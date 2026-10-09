@@ -2,6 +2,6 @@
 
 | ID | Problem | Topic | Status |
 |---|---|---|---|
-| D1-P1 | — | — | ⬜ |
-| D1-P2 | — | — | ⬜ |
-| D1-P3 | — | — | ⬜ |
+| W1-P1 | ArrayList | Colections | Completed |
+|   P2 | — | — | ⬜ |
+|   P3 | — | — | ⬜ |
