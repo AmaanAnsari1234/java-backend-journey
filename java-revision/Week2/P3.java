@@ -1,9 +1,14 @@
 package Week2;
-
+// Q1 - Sum of  Digits
+// Q2 - Palindrome
+// Q3 - Largest digit in a number
+// Q4 - Smallest digit in a number
 public class P3 {
     public static void main(String[] args) {
         sumOfDigits();
         numberPalindrome();
+        largestDigit();
+        smallestDigit();
     }
 
     public static void sumOfDigits() {
@@ -46,5 +51,35 @@ public class P3 {
         else System.out.println("Not a Palindrome");
     }
 
-    
+    public static void largestDigit()
+    {
+        int num = 5992;
+        int largest = 0;
+
+        while (num > 0){
+            int last = num % 10;
+            if(last > largest)
+            {
+                largest = last;
+            }
+            num = num /10;
+        }
+        System.out.println(largest);
+    }
+
+    public static void smallestDigit()
+    {
+        int num = 5992;
+        int smallest = 9;
+
+        while (num > 0){
+            int last = num % 10;
+            if(last < smallest)
+            {
+                smallest = last;
+            }
+            num = num /10;
+        }
+        System.out.println(smallest);
+    }
 }
