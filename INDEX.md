@@ -10,3 +10,4 @@
 | W2-P3-Q2 | Palindrome | Number Logic | Completed |
 | W2-P3-Q3 | Largest Digit in a Number | Number Logic | Completed |
 | W2-P3-Q4 | Smallest Digit in a Number | Number Logic | Completed |
+| W2-P4-Q1 | Even Odd Count | Number Logic | Completed |
