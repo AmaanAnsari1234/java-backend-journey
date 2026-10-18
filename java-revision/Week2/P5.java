@@ -6,7 +6,6 @@ public class P5 {
         countDigitOccurrences();
     }
 
-
     public static void countDigitOccurrences() {
         int num = 12232;
         int target = 2;
@@ -21,8 +20,6 @@ public class P5 {
 
             num = num / 10;
         }
-
         System.out.println("Digit " + target + " occurs " + count + " times");
     }
-
 }
