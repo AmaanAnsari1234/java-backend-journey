@@ -1,9 +1,11 @@
 package Week2;
-
+// Count Even and Odd
+// Count Occurrences of a Digit
 public class P4 {
 
     public static void main(String[] args) {
         EvenOdd();
+
     }
 
     public static void EvenOdd(){
@@ -20,8 +22,16 @@ public class P4 {
             }
             num = num / 10;
         }
-        System.out.println(evenCount);
-        System.out.println(oddCount);
+        System.out.println("Even digits: " + evenCount);
+        System.out.println("Odd digits: " + oddCount);
 
+    }
+
+    public static  void CountOccurrencesofaDigit(){
+        int num = 12232;
+        int target = 2;
+        int count = 0;
+
+        
     }
 }
