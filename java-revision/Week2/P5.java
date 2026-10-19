@@ -7,8 +7,8 @@ public class P5 {
     }
 
     public static void countDigitOccurrences() {
-        int num = 12232;
-        int target = 2;
+        int num = 555;
+        int target = 5;
         int count = 0;
 
         while (num > 0) {
