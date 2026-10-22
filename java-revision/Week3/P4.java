@@ -1,5 +1,6 @@
 // the first non-repeating digit
 
+
 import java.util.HashMap;
 
 public class P4 {
