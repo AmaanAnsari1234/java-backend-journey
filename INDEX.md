@@ -31,4 +31,7 @@ My Java, Spring Boot, DSA, SQL and backend development journey.
 | ID | Problem | Topic | Status | Code Path |
 |---|---|---|---|---|
 | P1-Q1 | Armstrong Number | Number Logic | Completed | [View Code](java-revision/Week3/P1.java) |
-
+| P2-Q1 | Find 2nd Largest Number | Arrays, Number Logic | Completed | [View Code](java-revision/Week3/P2.java) |
+| P2-Q2 | Second Smallest Distinct Digit in a Number | Number Logic | Completed | [View Code](java-revision/Week3/P2.java) |
+| P3-Q1 | Count the Frequency of Each Digit | HashMap, Number Logic | Completed | [View Code](java-revision/Week3/P3.java) |
+| P4-Q1 | First Non-Repeating Digit | HashMap, Number Logic | Completed | [View Code](java-revision/Week3/P4.java) |
