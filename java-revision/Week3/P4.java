@@ -24,7 +24,7 @@ public class P4 {
         }
 
         // Second loop: find the first non-repeating digit
-        while (rev > 0) {
+            while (rev > 0) {
             int digit = rev % 10;
 
             if (freq.get(digit) == 1) {
