@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class P1 {
     public static void main(String[] args) {
         FirstRepeatingDigit();
+
     }
 
     public static void FirstRepeatingDigit(){
@@ -35,6 +36,8 @@ public class P1 {
             rev = rev / 10;
         }
 
-        System.out.println("No non-repeating digit found.");
+        System.out.println("No repeating digit found.");
     }
+
+
 }
