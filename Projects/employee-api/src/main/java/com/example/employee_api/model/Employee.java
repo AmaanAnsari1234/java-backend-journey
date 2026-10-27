@@ -1,4 +1,4 @@
-package com.example.employee_api;
+package com.example.employee_api.model;
 
 public class Employee {
     private Long id;
