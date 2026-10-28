@@ -23,6 +23,7 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employees;
     }
+    
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
