@@ -23,7 +23,7 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employees;
     }
-    
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
@@ -41,5 +41,17 @@ public class EmployeeController {
         employee.setId(nextId++);
         employees.add(employee);
         return ResponseEntity.status(HttpStatus.CREATED).body(employee);
+    }
+
+    @PutMapping("/id")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id , @RequestBody Employee updated) {
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                employee.setName(updated.getName());
+                employee.setDepartment(updated.getDepartment());
+                return ResponseEntity.ok(employee);
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 }
