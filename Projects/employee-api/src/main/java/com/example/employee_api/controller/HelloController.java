@@ -10,8 +10,6 @@ public  class HelloController{
     public String hello(){
         return "Hello, Spring Boooot";
     }
-
-
     
     @GetMapping("/goodbye")
     public String goodbye(){
