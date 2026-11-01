@@ -1,7 +1,15 @@
 package com.example.employee_api.model;
 
+import jakarta.persistence.Entity;                    // NEW
+import jakarta.persistence.GeneratedValue;            // NEW
+import jakarta.persistence.GenerationType;            // NEW
+import jakarta.persistence.Id;import javax.annotation.processing.Generated;
+
+@Entity
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String department;
