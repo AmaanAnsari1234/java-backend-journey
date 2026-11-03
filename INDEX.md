@@ -27,6 +27,7 @@ My Java, Spring Boot, DSA, SQL and backend development journey.
 | P4-Q1 | Even Odd Count | Number Logic | Completed | [View Code](java-revision/Week2/P4.java) |
 | P5-Q1 | Count the Occurrences of a Digit | Number Logic | Completed | [View Code](java-revision/Week2/P5.java) |
 
+
 ## Week 3
 
 | ID | Problem | Topic | Status | Code Path |
