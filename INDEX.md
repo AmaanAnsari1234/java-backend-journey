@@ -11,6 +11,7 @@ My Java, Spring Boot, DSA, SQL and backend development journey.
 | P2-Q2 | Count Digits | Number Logic | Completed | [View Code](java-revision/Week1/P2.java) |
 | P2-Q3 | Check Prime Number | Number Logic | Completed | [View Code](java-revision/Week1/P2.java) |
 
+
 ## Week 2
 
 | ID | Problem | Topic | Status | Code Path |
