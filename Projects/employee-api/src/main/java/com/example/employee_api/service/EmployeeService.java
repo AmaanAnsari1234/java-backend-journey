@@ -1,50 +1,47 @@
 package com.example.employee_api.service;
 
 import com.example.employee_api.model.Employee;
+import com.example.employee_api.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeService {
 
-    private final List<Employee> employees = new ArrayList<>();
-    private long nextId = 4;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeService() {
-        employees.add(new Employee(1L, "Amaan", "IT"));
-        employees.add(new Employee(2L, "Sara", "HR"));
-        employees.add(new Employee(3L, "Ali", "Finance"));
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     public List<Employee> getAll() {
-        return employees;
+        return employeeRepository.findAll();
     }
 
     public Optional<Employee> getById(Long id) {
-        return employees.stream()
-                .filter(employee -> employee.getId().equals(id))
-                .findFirst();
+        return employeeRepository.findById(id);
     }
 
     public Employee add(Employee employee) {
-        employee.setId(nextId++);
-        employees.add(employee);
-        return employee;
+        employee.setId(null);
+        return employeeRepository.save(employee);
     }
 
     public Optional<Employee> update(Long id, Employee updated) {
-        Optional<Employee> existing = getById(id);
-        existing.ifPresent(employee -> {
-            employee.setName(updated.getName());
-            employee.setDepartment(updated.getDepartment());
+        return employeeRepository.findById(id).map(existing -> {
+            existing.setName(updated.getName());
+            existing.setDepartment(updated.getDepartment());
+            return employeeRepository.save(existing);
         });
-        return existing;
     }
 
     public boolean delete(Long id) {
-        return employees.removeIf(employee -> employee.getId().equals(id));
+        if (employeeRepository.existsById(id)) {
+            employeeRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

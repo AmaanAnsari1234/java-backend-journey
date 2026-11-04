@@ -1,65 +1,52 @@
 package com.example.employee_api.controller;
 
 import com.example.employee_api.model.Employee;
+import com.example.employee_api.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    private final List<Employee> employees = new ArrayList<>();
+    private final EmployeeService employeeService;
 
-    public EmployeeController() {
-        employees.add(new Employee(1L, "Amaan", "IT"));
-        employees.add(new Employee(2L, "Sara", "HR"));
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping
     public List<Employee> getAllEmployees() {
-        return employees;
+        return employeeService.getAll();
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        for (Employee employee : employees) {
-            if (employee.getId().equals(id)) {
-                return ResponseEntity.ok(employee);
-            }
-        }
-        return ResponseEntity.notFound().build();
+        return employeeService.getById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    private long nextId = 4;
     @PostMapping
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        employee.setId(nextId++);
-        employees.add(employee);
-        return ResponseEntity.status(HttpStatus.CREATED).body(employee);
+        Employee saved = employeeService.add(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    @PutMapping("/id")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id , @RequestBody Employee updated) {
-        for (Employee employee : employees) {
-            if (employee.getId().equals(id)) {
-                employee.setName(updated.getName());
-                employee.setDepartment(updated.getDepartment());
-                return ResponseEntity.ok(employee);
-            }
-        }
-        return ResponseEntity.notFound().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
+                                                   @RequestBody Employee updated) {
+        return employeeService.update(id, updated)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-        // 1. remove the employee with this id from the list
-        boolean deleted = employees.removeIf(employee -> employee.getId().equals(id));
-        if(deleted) {
+        if (employeeService.delete(id)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
