@@ -45,10 +45,11 @@ public class EmployeeController {
         return employee;
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
-                                                   @RequestBody Employee updated) {
-        return employeeService.update(id, updated)
+                                                   @Valid @RequestBody EmployeeRequest request) {
+        return employeeService.update(id, toEntity(request))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
