@@ -1,7 +1,9 @@
 package com.example.employee_api.controller;
 
+import com.example.employee_api.dto.EmployeeRequest;
 import com.example.employee_api.model.Employee;
 import com.example.employee_api.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +33,16 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        Employee saved = employeeService.add(employee);
+    public ResponseEntity<Employee> addEmployee(@Valid @RequestBody EmployeeRequest request) {
+        Employee saved = employeeService.add(toEntity(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
+
+    private Employee toEntity(EmployeeRequest request) {
+        Employee employee = new Employee();
+        employee.setName(request.getName());
+        employee.setDepartment(request.getDepartment());
+        return employee;
     }
 
     @PutMapping("/{id}")
