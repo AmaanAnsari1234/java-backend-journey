@@ -30,10 +30,7 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeResponse> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getById(id)
-                .map(this::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(toResponse(employeeService.getById(id)));
     }
 
     @PostMapping
