@@ -31,19 +31,18 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Optional<Employee> update(Long id, Employee updated) {
-        return employeeRepository.findById(id).map(existing -> {
+    public Employee update(Long id, Employee updated) {
+        Employee existing = getById(id);
+
             existing.setName(updated.getName());
             existing.setDepartment(updated.getDepartment());
             return employeeRepository.save(existing);
-        });
+
     }
 
-    public boolean delete(Long id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return true;
+    public void delete(Long id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new EmployeeNotFoundException(id);
         }
-        return false;
     }
 }
