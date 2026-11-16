@@ -44,5 +44,6 @@ public class EmployeeService {
         if (!employeeRepository.existsById(id)) {
             throw new EmployeeNotFoundException(id);
         }
+        employeeRepository.deleteById(id);
     }
 }
