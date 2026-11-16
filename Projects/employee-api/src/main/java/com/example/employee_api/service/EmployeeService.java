@@ -3,6 +3,7 @@ package com.example.employee_api.service;
 import com.example.employee_api.model.Employee;
 import com.example.employee_api.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
+import com.example.employee_api.exception.EmployeeNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,9 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<Employee> getById(Long id) {
-        return employeeRepository.findById(id);
+    public Employee getById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
     public Employee add(Employee employee) {
@@ -29,19 +31,19 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Optional<Employee> update(Long id, Employee updated) {
-        return employeeRepository.findById(id).map(existing -> {
+    public Employee update(Long id, Employee updated) {
+        Employee existing = getById(id);
+
             existing.setName(updated.getName());
             existing.setDepartment(updated.getDepartment());
             return employeeRepository.save(existing);
-        });
+
     }
 
-    public boolean delete(Long id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return true;
+    public void delete(Long id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new EmployeeNotFoundException(id);
         }
-        return false;
+        employeeRepository.deleteById(id);
     }
 }
